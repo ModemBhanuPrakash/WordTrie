@@ -1,5 +1,6 @@
 package klu.project.wordtrie.controller;
 
+import java.util.*;
 import jakarta.servlet.http.HttpServletRequest;
 import klu.project.wordtrie.Trie;
 import klu.project.wordtrie.model.Words;
@@ -21,6 +22,10 @@ public class TrieController {
 
     @GetMapping("/")
     public ModelAndView index(){
+        List<Words> li = ws.allWords();
+        for(Words word:li){
+            trie.insertWord(word.getWord(),word.getMeaning(),word.getAntonym(), word.getSynonym(), word.getExample());
+        }
         ModelAndView mv = new ModelAndView("index");
         return mv;
     }
