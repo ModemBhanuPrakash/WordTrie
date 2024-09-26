@@ -99,6 +99,13 @@
         </div>
     </form>
 
+    <form method="get" action="/">
+        <div class="buttons">
+            <!-- Insert Button -->
+            <button class="btn">Home</button>
+        </div>
+    </form>
+
 </div>
 </body>
 </html>

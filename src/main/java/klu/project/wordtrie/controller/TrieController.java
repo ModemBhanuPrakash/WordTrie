@@ -1,6 +1,9 @@
-package klu.project.wordtrie;
+package klu.project.wordtrie.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import klu.project.wordtrie.Trie;
+import klu.project.wordtrie.model.Words;
+import klu.project.wordtrie.service.WordsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +15,9 @@ public class TrieController {
 
     @Autowired
     private Trie trie;
+
+    @Autowired
+    private WordsService ws;
 
     @GetMapping("/")
     public ModelAndView index(){
@@ -27,10 +33,21 @@ public class TrieController {
 
     @PostMapping("/insertWord")
     public ModelAndView insertWord(HttpServletRequest req){
-        String word = req.getParameter("word");
+        String word = req.getParameter("newWord");
+        String meaning = req.getParameter("meaning");
+        String antonym = req.getParameter("antonym");
+        String synonym = req.getParameter("synonym");
+        String exampleSentence = req.getParameter("exampleSentence");
         ModelAndView mv = new ModelAndView("insertPage");
-        if(trie.insertWord(word)){
-            mv.addObject("message","Word Inserted Successfully");
+        if(trie.insertWord(word,meaning,antonym,synonym,exampleSentence)){
+            Words w = new Words();
+            w.setWord(word);
+            w.setMeaning(meaning);
+            w.setAntonym(antonym);
+            w.setSynonym(synonym);
+            w.setExample(exampleSentence);
+            String msg = ws.addWord(w);
+            mv.addObject("message",msg);
         }
         else{
             mv.addObject("message","Word already present in the dictionary");

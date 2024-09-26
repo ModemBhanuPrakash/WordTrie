@@ -10,7 +10,7 @@ public class Trie {
         root = new TNode();
     }
 
-    public boolean insertWord(String word){
+    public boolean insertWord(String word,String meaning,String antonym,String synonym,String exampleSentence){
         int n = word.length();
         TNode temp = root;
         for(int i=0;i<n;i++){
@@ -23,6 +23,10 @@ public class Trie {
         }
         if(temp.endOfWord==false){
             temp.endOfWord = true;
+            temp.meaning = meaning;
+            temp.antonym = antonym;
+            temp.synonym = synonym;
+            temp.example = exampleSentence;
             return true;
         }
         else return false;

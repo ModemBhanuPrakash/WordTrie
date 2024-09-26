@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert Word</title>
+    <title>Add New Word</title>
     <style>
         * {
             margin: 0;
@@ -36,8 +36,8 @@
             color: #333;
         }
 
-        .search-bar {
-            width: 80%;
+        .input-field {
+            width: 100%;
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
@@ -53,10 +53,18 @@
             cursor: pointer;
             text-decoration: none;
             font-size: 16px;
+            width: 100%;
         }
 
         .btn:hover {
             background-color: #0056b3;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
         }
 
         a {
@@ -71,12 +79,33 @@
 </head>
 <body>
 <div class="container">
-    <h1>Insert Word into Dictionary</h1>
-    <h3 align=center style="color:red"> ${message}</h3>
+    <h1>Add New Word</h1>
+    <h3 align="center" style="color:red">${message}</h3>
+
+    <!-- Form for adding a new word -->
     <form method="post" action="insertWord">
-        <input name="word" type="text" placeholder="Enter word to insert" class="search-bar">
-        <button class="btn">Insert</button>
-        <br>
+        <input name="newWord" type="text" placeholder="Enter new word" class="input-field" required>
+        <input name="meaning" type="text" placeholder="Enter meaning" class="input-field" required>
+        <input name="antonym" type="text" placeholder="Enter antonym" class="input-field">
+        <input name="synonym" type="text" placeholder="Enter synonym" class="input-field">
+        <input name="exampleSentence" type="text" placeholder="Enter example sentence" class="input-field">
+        <div class="buttons">
+            <button class="btn">Add Word</button>
+        </div>
+    </form>
+
+    <form method="post" action="searchPage">
+        <div class="buttons">
+            <!-- Insert Button -->
+            <button class="btn">Search</button>
+        </div>
+    </form>
+
+    <form method="get" action="/">
+        <div class="buttons">
+            <!-- Insert Button -->
+            <button class="btn">Home</button>
+        </div>
     </form>
 
 </div>
